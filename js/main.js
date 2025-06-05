@@ -18,28 +18,18 @@
 
     // Sticky Navbar
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 45) {
-            $('.navbar').addClass('sticky-top shadow-sm');
+        if ($(this).scrollTop() > 300) {
+            $('.sticky-top').addClass('bg-primary shadow-sm').css('top', '0px');
         } else {
-            $('.navbar').removeClass('sticky-top shadow-sm');
+            $('.sticky-top').removeClass('bg-primary shadow-sm').css('top', '-150px');
         }
     });
 
 
-    // Smooth scrolling on the navbar links
-    $(".navbar-nav a").on('click', function (event) {
-        if (this.hash !== "") {
-            event.preventDefault();
-            
-            $('html, body').animate({
-                scrollTop: $(this.hash).offset().top - 45
-            }, 1500, 'easeInOutExpo');
-            
-            if ($(this).parents('.navbar-nav').length) {
-                $('.navbar-nav .active').removeClass('active');
-                $(this).closest('a').addClass('active');
-            }
-        }
+    // Facts counter
+    $('[data-toggle="counter-up"]').counterUp({
+        delay: 10,
+        time: 2000
     });
     
     
@@ -57,46 +47,18 @@
     });
 
 
-    // Facts counter
-    $('[data-toggle="counter-up"]').counterUp({
-        delay: 10,
-        time: 2000
-    });
-
-
-    // Screenshot carousel
-    $(".screenshot-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1000,
-        loop: true,
-        dots: true,
-        items: 1
-    });
-
-
     // Testimonials carousel
     $(".testimonial-carousel").owlCarousel({
+        items: 1,
         autoplay: true,
         smartSpeed: 1000,
+        dots: true,
         loop: true,
-        center: true,
-        dots: false,
         nav: true,
         navText : [
             '<i class="bi bi-chevron-left"></i>',
             '<i class="bi bi-chevron-right"></i>'
-        ],
-        responsive: {
-            0:{
-                items:1
-            },
-            768:{
-                items:2
-            },
-            992:{
-                items:3
-            }
-        }
+        ]
     });
     
 })(jQuery);
